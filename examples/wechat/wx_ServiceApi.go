@@ -3,10 +3,10 @@ package wechat
 import (
 	"net/http"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
-	"github.com/go-pay/gopay/wechat"
+	"github.com/wangxiaoan/gopay"
+	"github.com/wangxiaoan/gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/wechat"
 )
 
 func GetAppWeChatLoginAccessToken() {

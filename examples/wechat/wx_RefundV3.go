@@ -3,11 +3,10 @@ package wechat
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/go-pay/gopay/common"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
 
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/wechat/v3"
+	"github.com/wangxiaoan/gopay/pkg/util"
 )
 
 /*

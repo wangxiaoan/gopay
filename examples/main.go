@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/go-pay/gopay/common"
+	"github.com/wangxiaoan/gopay/common"
 
-	"github.com/go-pay/gopay/alipay"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/alipay"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
 func main() {

@@ -2,13 +2,13 @@ package xhttp
 
 import (
 	"context"
-	"github.com/go-pay/gopay/common"
+	"github.com/wangxiaoan/gopay/common"
 	"io/ioutil"
 	"testing"
 	"time"
 
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
 type HttpGet struct {

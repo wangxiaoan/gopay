@@ -1,13 +1,13 @@
 package wechat
 
 import (
-	"github.com/go-pay/gopay/common"
+	"github.com/wangxiaoan/gopay/common"
 	"strconv"
 	"time"
 
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
-	"github.com/go-pay/gopay/wechat"
+	"github.com/wangxiaoan/gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/wechat"
 )
 
 func UnifiedOrder() {

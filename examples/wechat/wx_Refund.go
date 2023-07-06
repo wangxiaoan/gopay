@@ -2,11 +2,11 @@ package wechat
 
 import (
 	"context"
-	"github.com/go-pay/gopay/common"
+	"github.com/wangxiaoan/gopay/common"
 
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
-	"github.com/go-pay/gopay/wechat"
+	"github.com/wangxiaoan/gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/wechat"
 )
 
 var ctx = context.Background()

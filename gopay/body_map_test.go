@@ -3,11 +3,11 @@ package gopay
 import (
 	"encoding/json"
 	"encoding/xml"
-	"github.com/go-pay/gopay/common"
+	"github.com/wangxiaoan/gopay/common"
 	"testing"
 
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
 func TestBodyMapSetBodyMap(t *testing.T) {

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
 var (

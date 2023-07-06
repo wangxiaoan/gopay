@@ -8,6 +8,8 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"github.com/wangxiaoan/gopay/gopay"
+	"github.com/wangxiaoan/gopay/pkg/util"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -16,9 +18,6 @@ import (
 	"sort"
 	"strings"
 	"time"
-
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
 )
 
 type Client struct {
