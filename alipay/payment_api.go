@@ -67,7 +67,7 @@ func (a *Client) TradeAppPay(ctx context.Context, bm gopay.BodyMap) (payParam st
 		return util.NULL, err
 	}
 	var bs []byte
-	if bs, err = a.doAliPay(ctx, bm, "alipay.trade.app.pay"); err != nil {
+	if bs, err = a.doAliPay(ctx, bm, MethodTradeAppPay); err != nil {
 		return util.NULL, err
 	}
 	payParam = string(bs)
