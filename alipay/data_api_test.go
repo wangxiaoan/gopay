@@ -1,10 +1,10 @@
 package alipay
 
 import (
-	"gopay/gopay"
+	"github.com/wangxiaoan/gopay/gopay"
 	"testing"
 
-	"gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
 func TestClient_DataBillDownloadUrlQuery(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"gopay/gopay"
+	"github.com/wangxiaoan/gopay/gopay"
 )
 
 // alipay.open.app.qrcode.create(小程序生成推广二维码接口)

@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"gopay/gopay"
+	"github.com/wangxiaoan/gopay/gopay"
 )
 
 // ant.merchant.expand.shop.modify(修改蚂蚁店铺)

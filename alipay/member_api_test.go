@@ -3,7 +3,8 @@ package alipay
 import (
 	"testing"
 
-	"gopay/pkg/xlog"
+	"github.com/wangxiaoan/gopay/gopay"
+	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
 func TestClient_UserCertifyOpenInit(t *testing.T) {

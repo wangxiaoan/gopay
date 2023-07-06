@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/pkg/util"
 	"io"
 	"net/url"
 	"sort"

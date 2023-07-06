@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"gopay/gopay"
+	"github.com/wangxiaoan/gopay/gopay"
 )
 
 // alipay.commerce.transport.nfccard.send(NFC用户卡信息同步)

@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"gopay/gopay"
-	"gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/gopay"
+	"github.com/wangxiaoan/gopay/pkg/util"
 )
 
 // alipay.open.auth.token.app(换取应用授权令牌)

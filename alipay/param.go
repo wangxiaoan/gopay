@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"gopay/pkg/util"
+	"github.com/wangxiaoan/gopay/pkg/util"
 )
 
 // AppId   string `json:"app_id"`   //支付宝分配给开发者的应用ID
