@@ -4,8 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-
-	"github.com/go-pay/gopay"
+	"gopay/gopay"
 )
 
 // Deprecated

@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/pkg/xlog"
 	"github.com/go-pay/gopay/wechat"
@@ -19,7 +19,7 @@ func Micropay() {
 	number := util.RandomString(32)
 	xlog.Debug("out_trade_no:", number)
 	// 初始化参数Map
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("nonce_str", util.RandomString(32)).
 		Set("body", "扫用户付款码支付").
 		Set("out_trade_no", number).

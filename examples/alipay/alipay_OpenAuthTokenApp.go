@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -23,7 +23,7 @@ func OpenAuthTokenApp() {
 		SetSignType(alipay.RSA2)
 
 	//请求参数
-	bm := make(gopay.BodyMap).
+	bm := make(common.BodyMap).
 		Set("grant_type", "authorization_code").
 		Set("code", "866185490c4e40efa9f71efea6766X02")
 	//发起请求

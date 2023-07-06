@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -25,7 +25,7 @@ func TradePay() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("subject", "条码支付")
 	bm.Set("scene", "bar_code")
 	bm.Set("auth_code", "286248566432274952")

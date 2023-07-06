@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -23,7 +23,7 @@ func UserInfoAuth() {
 		SetSignType(alipay.RSA2)
 
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	// 接口权限值，目前只支持auth_user和auth_base两个值。具体说明看文档介绍
 	bm.Set("scopes", []string{"auth_user"})
 	bm.Set("state", "init")

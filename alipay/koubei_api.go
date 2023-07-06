@@ -4,8 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-
-	"github.com/go-pay/gopay"
+	"gopay/gopay"
 )
 
 // koubei.trade.order.aggregate.consult(聚合支付订单咨询服务)

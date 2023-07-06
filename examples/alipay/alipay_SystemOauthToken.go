@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -23,7 +23,7 @@ func SystemOauthToken() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("grant_type", "authorization_code")
 	bm.Set("code", "3a06216ac8f84b8c93507bb9774bWX11")
 
@@ -38,7 +38,7 @@ func SystemOauthToken() {
 	xlog.Debug("aliRsp:", aliRsp.SignData)
 
 	//支付宝小程序创建订单
-	bm2 := make(gopay.BodyMap)
+	bm2 := make(common.BodyMap)
 	bm2.Set("subject", "创建订单")
 	bm2.Set("buyer_id", aliRsp.Response.UserId)
 	bm2.Set("out_trade_no", "GZ201901301040355708")

@@ -1,10 +1,10 @@
 package wechat
 
 import (
+	"github.com/go-pay/gopay/common"
 	"strconv"
 	"time"
 
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/pkg/xlog"
 	"github.com/go-pay/gopay/wechat"
@@ -26,7 +26,7 @@ func UnifiedOrder() {
 	xlog.Debug("out_trade_no:", number)
 
 	//初始化参数Map
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("nonce_str", util.RandomString(32)).
 		Set("body", "H5支付").
 		Set("out_trade_no", number).
@@ -36,8 +36,8 @@ func UnifiedOrder() {
 		Set("trade_type", wechat.TradeType_H5).
 		Set("device_info", "WEB").
 		Set("sign_type", wechat.SignType_MD5).
-		SetBodyMap("scene_info", func(bm gopay.BodyMap) {
-			bm.SetBodyMap("h5_info", func(bm gopay.BodyMap) {
+		SetBodyMap("scene_info", func(bm common.BodyMap) {
+			bm.SetBodyMap("h5_info", func(bm common.BodyMap) {
 				bm.Set("type", "Wap")
 				bm.Set("wap_url", "https://www.fmm.ink")
 				bm.Set("wap_name", "H5测试支付")

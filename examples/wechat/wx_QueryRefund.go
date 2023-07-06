@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/pkg/xlog"
 	"github.com/go-pay/gopay/wechat"
@@ -17,7 +17,7 @@ func QueryRefund() {
 	client := wechat.NewClient("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", false)
 
 	// 初始化参数结构体
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("out_trade_no", "97HiM5j6kGmM2fk7fYMc8MgKhPnEQ5Rk").
 		//Set("out_refund_no", "vk4264I1UQ3Hm3E4AKsavK8npylGSgQA092f9ckUxp8A2gXmnsLEdsupURVTcaC7").
 		//Set("transaction_id", "97HiM5j6kGmM2fk7fYMc8MgKhPnEQ5Rk").

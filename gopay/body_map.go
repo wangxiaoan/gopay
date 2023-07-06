@@ -4,12 +4,11 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"gopay/pkg/util"
 	"io"
 	"net/url"
 	"sort"
 	"strings"
-
-	"github.com/go-pay/gopay/pkg/util"
 )
 
 type BodyMap map[string]interface{}

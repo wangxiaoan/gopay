@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -22,7 +22,7 @@ func TradeOrderSettle() {
 		SetSignType(alipay.RSA2)
 
 	//请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("out_request_no", "201907301518083384")
 	bm.Set("trade_no", "2019072522001484690549776067")
 

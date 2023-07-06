@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/pkg/xlog"
 	"github.com/go-pay/gopay/wechat"
@@ -17,7 +17,7 @@ func CloseOrder() {
 	client := wechat.NewClient("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", false)
 
 	// 初始化参数结构体
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("out_trade_no", "MfZC2segKxh0bnJSELbvKNeH3d9oWvvQ").
 		Set("nonce_str", util.RandomString(32)).
 		Set("sign_type", wechat.SignType_MD5)

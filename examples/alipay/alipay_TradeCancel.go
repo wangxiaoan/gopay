@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -24,7 +24,7 @@ func TradeCancel() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("out_trade_no", "GYWX201901301040355706100457")
 	//撤销支付订单
 	aliRsp, err := client.TradeCancel(ctx, bm)

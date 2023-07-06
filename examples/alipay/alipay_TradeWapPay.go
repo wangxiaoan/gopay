@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -24,7 +24,7 @@ func TradeWapPay() {
 		//SetReturnUrl("https://www.fmm.ink").
 		SetNotifyUrl("https://www.fmm.ink")
 	//请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("subject", "手机网站测试支付")
 	bm.Set("out_trade_no", "GZ201901301040355703")
 	bm.Set("quit_url", "https://www.fmm.ink")

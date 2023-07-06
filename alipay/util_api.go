@@ -5,8 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-
-	"github.com/go-pay/gopay"
+	"gopay/gopay"
 )
 
 // alipay.open.app.alipaycert.download(应用支付宝公钥证书下载)

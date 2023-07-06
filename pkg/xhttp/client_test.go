@@ -2,11 +2,11 @@ package xhttp
 
 import (
 	"context"
+	"github.com/go-pay/gopay/common"
 	"io/ioutil"
 	"testing"
 	"time"
 
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
@@ -47,8 +47,8 @@ func TestHttpUploadFile(t *testing.T) {
 	}
 	//xlog.Debug("fileByte：", string(fileContent))
 
-	bm := make(gopay.BodyMap)
-	bm.SetBodyMap("meta", func(bm gopay.BodyMap) {
+	bm := make(common.BodyMap)
+	bm.SetBodyMap("meta", func(bm common.BodyMap) {
 		bm.Set("filename", "123.jpg").
 			Set("sha256", "ad4465asd4fgw5q")
 	}).SetFormFile("image", &util.File{Name: "logo.png", Content: fileContent})

@@ -3,9 +3,9 @@ package wechat
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/wechat/v3"
 )
@@ -63,7 +63,7 @@ func RefundV3() {
 	orderNo := fmt.Sprintf("CX-%s", s)
 
 	// 初始化 BodyMap
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	// 选填 商户订单号（支付后返回的，一般是以42000开头）
 	bm.Set("transaction_id", "4200001650202212082601288339").
 		Set("sign_type", "MD5").
@@ -72,7 +72,7 @@ func RefundV3() {
 		// 选填 退款描述
 		Set("reason", "这是一退款操作").
 		Set("notify_url", "https://www.fmm.ink").
-		SetBodyMap("amount", func(bm gopay.BodyMap) {
+		SetBodyMap("amount", func(bm common.BodyMap) {
 			// 退款金额:单位是分
 			bm.Set("refund", "1"). //实际退款金额
 						Set("total", "1"). // 折扣前总金额（不是实际退款数）

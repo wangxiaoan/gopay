@@ -1,12 +1,12 @@
 package alipay
 
 import (
+	"gopay/gopay"
 	"testing"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/alipay/cert"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"gopay/alipay/cert"
+	"gopay/pkg/util"
+	"gopay/pkg/xlog"
 )
 
 func TestClient_TradePrecreate(t *testing.T) {

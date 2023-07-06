@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/pkg/xlog"
 	"github.com/go-pay/gopay/wechat"
@@ -23,7 +23,7 @@ func Transfer() {
 	}
 
 	// 初始化参数结构体
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("nonce_str", util.RandomString(32)).
 		Set("partner_trade_no", util.RandomString(32)).
 		Set("openid", "o0Df70H2Q0fY8JXh1aFPIRyOBgu8").

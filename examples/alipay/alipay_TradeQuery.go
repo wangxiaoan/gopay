@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -24,7 +24,7 @@ func TradeQuery() {
 		SetAppAuthToken("201908BB03f542de8ecc42b985900f5080407abc")
 
 	//请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("out_trade_no", "GZ201909081743431443")
 
 	//查询订单

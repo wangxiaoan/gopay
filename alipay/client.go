@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xhttp"
-	"github.com/go-pay/gopay/pkg/xlog"
-	"github.com/go-pay/gopay/pkg/xpem"
-	"github.com/go-pay/gopay/pkg/xrsa"
+	"gopay/gopay"
+	"gopay/pkg/util"
+	"gopay/pkg/xhttp"
+	"gopay/pkg/xlog"
+	"gopay/pkg/xpem"
+	"gopay/pkg/xrsa"
 )
 
 type Client struct {

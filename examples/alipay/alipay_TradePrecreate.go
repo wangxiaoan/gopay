@@ -1,8 +1,8 @@
 package alipay
 
 import (
-	"github.com/go-pay/gopay"
 	"github.com/go-pay/gopay/alipay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/xlog"
 )
 
@@ -23,7 +23,7 @@ func TradePrecreate() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("subject", "预创建创建订单")
 	bm.Set("out_trade_no", "GZ201907301040355704")
 	bm.Set("total_amount", "100")

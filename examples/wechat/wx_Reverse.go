@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"github.com/go-pay/gopay"
+	"github.com/go-pay/gopay/common"
 	"github.com/go-pay/gopay/pkg/util"
 	"github.com/go-pay/gopay/pkg/xlog"
 	"github.com/go-pay/gopay/wechat"
@@ -17,7 +17,7 @@ func Reverse() {
 	client := wechat.NewClient("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", false)
 
 	// 初始化参数Map
-	bm := make(gopay.BodyMap)
+	bm := make(common.BodyMap)
 	bm.Set("nonce_str", util.RandomString(32)).
 		Set("out_trade_no", "6aDCor1nUcAihrV5JBlI09tLvXbUp02B").
 		Set("sign_type", wechat.SignType_MD5)

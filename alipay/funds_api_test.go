@@ -3,8 +3,7 @@ package alipay
 import (
 	"testing"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"gopay/pkg/xlog"
 )
 
 func TestFundTransUniTransfer(t *testing.T) {

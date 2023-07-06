@@ -1,12 +1,12 @@
 package alipay
 
 import (
+	"gopay/gopay"
 	"io/ioutil"
 	"testing"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/xlog"
-	"github.com/go-pay/gopay/pkg/xrsa"
+	"gopay/pkg/xlog"
+	"gopay/pkg/xrsa"
 )
 
 func TestSyncVerifySign(t *testing.T) {

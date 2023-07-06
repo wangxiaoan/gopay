@@ -4,13 +4,14 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"encoding/xml"
+	"gopay/gopay"
 	"testing"
 
-	"github.com/go-pay/gopay/pkg/xlog"
+	"gopay/pkg/xlog"
 )
 
 func TestBodyMap_CheckParamsNull(t *testing.T) {
-	bm := make(BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("name", "jerry")
 	bm.Set("age", 2)
 	bm.Set("phone", "123")
@@ -47,7 +48,7 @@ func TestBodyMap_UnmarshalXML(t *testing.T) {
    <transaction_id><![CDATA[1008450740201411110005820873]]></transaction_id>
 </xml>`
 
-	mm := make(BodyMap)
+	mm := make(gopay.BodyMap)
 	err := xml.Unmarshal([]byte(xmlData), &mm)
 	if err != nil {
 		xlog.Errorf("xml.Unmarshal(%s),error:%+v", xmlData, err)

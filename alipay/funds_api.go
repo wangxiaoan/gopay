@@ -4,9 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
+	"gopay/gopay"
+	"gopay/pkg/util"
 )
 
 // alipay.fund.trans.uni.transfer(单笔转账接口)
