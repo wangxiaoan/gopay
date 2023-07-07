@@ -233,7 +233,7 @@ func (a *Client) doAliPay(ctx context.Context, bm gopay.BodyMap, method string, 
 		return nil, err
 	}
 	switch method {
-	case "alipay.fund.auth.order.app.freeze":
+	case MethodTradeAppPay, "alipay.fund.auth.order.app.freeze":
 		return []byte(param), nil
 	case "alipay.trade.wap.pay", "alipay.trade.page.pay", "alipay.user.certify.open.certify":
 		if !a.IsProd {
