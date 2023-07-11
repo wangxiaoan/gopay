@@ -328,3 +328,17 @@ type UserAlipaypointBudgetlibQuery struct {
 	StartTime        string `json:"start_time"`
 	EndTime          string `json:"end_time"`
 }
+
+// ==================================================================
+// 人脸认证初始化接口返回结构
+type FaceVerificationInitializeResponse struct {
+	Response     *FaceVerificationInitialize `json:"datadigital_fincloud_generalsaas_face_verification_initialize_response"`
+	AlipayCertSn string                      `json:"alipay_cert_sn,omitempty"`
+	SignData     string                      `json:"-"`
+	Sign         string                      `json:"sign"`
+}
+type FaceVerificationInitialize struct {
+	ErrorResponse
+	CertifyId string `json:"certify_id,omitempty"`
+	PageUrl   string `json:"page_url,omitempty"`
+}

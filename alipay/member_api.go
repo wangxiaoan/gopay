@@ -559,3 +559,28 @@ func (a *Client) UserAlipaypointBudgetlibQuery(ctx context.Context, bm gopay.Bod
 	aliRsp.SignData = signData
 	return aliRsp, a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
 }
+
+// datadigital.fincloud.generalsaas.face.verification.initialize(人脸核身初始化)
+// 文档地址：https://opendocs.alipay.com/open/04jg6r
+func (a *Client) FaceVerificationInitialize(ctx context.Context, bm gopay.BodyMap) (aliRsp *FaceVerificationInitializeResponse, rawResponse string, err error) {
+	err = bm.CheckEmptyError("outer_order_no", "biz_code", "identity_type", "cert_type",
+		"cert_name", "cert_no",
+	)
+	if err != nil {
+		return nil, "", err
+	}
+	var bs []byte
+	if bs, err = a.doAliPay(ctx, bm, MethodFaceVerificationInitialize); err != nil {
+		return nil, string(bs), err
+	}
+	aliRsp = new(FaceVerificationInitializeResponse)
+	if err = json.Unmarshal(bs, aliRsp); err != nil || aliRsp.Response == nil {
+		return nil, string(bs), err
+	}
+	if err = bizErrCheck(aliRsp.Response.ErrorResponse); err != nil {
+		return aliRsp, string(bs), err
+	}
+	signData, signDataErr := a.getSignData(bs, aliRsp.AlipayCertSn)
+	aliRsp.SignData = signData
+	return aliRsp, string(bs), a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
+}

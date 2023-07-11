@@ -1,6 +1,7 @@
 package alipay
 
 import (
+	"github.com/wangxiaoan/gopay/pkg/util"
 	"testing"
 
 	"github.com/wangxiaoan/gopay/gopay"
@@ -387,4 +388,34 @@ func TestUserAlipaypointBudgetlibQuery(t *testing.T) {
 		return
 	}
 	xlog.Debug("aliRsp:", *aliRsp)
+}
+
+func TestClient_FaceVerificationInitialize(t *testing.T) {
+	// 请求参数
+
+	// 需要验证的身份信息参数，格式为json
+	identity := make(gopay.BodyMap)
+	identity["identity_type"] = "CERT_INFO"
+	identity["cert_type"] = "IDENTITY_CARD"
+	identity["cert_name"] = "张三"
+	identity["cert_no"] = "310123199012301234"
+	identity["phone_no"] = "18017001234"
+	identity.Set("outer_order_no", "ZGYD201809132323000001234")
+	// 认证场景码：
+	identity.Set("biz_code", "DATA_DIGITAL_BIZ_CODE_FACE_VERIFICATION")
+
+	// 发起请求
+	aliRsp, response, err := client.FaceVerificationInitialize(ctx, identity)
+
+	util.WriteDebugFile([]byte(response), "./FaceVerificationInitialize.html")
+	t.Logf("err=%v", err)
+	if err != nil {
+		if bizErr, ok := IsBizError(err); ok {
+			xlog.Errorf("%+v", bizErr)
+			// do something
+			return
+		}
+		return
+	}
+	t.Logf("response=%v", aliRsp)
 }
