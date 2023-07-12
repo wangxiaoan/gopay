@@ -563,7 +563,9 @@ func (a *Client) UserAlipaypointBudgetlibQuery(ctx context.Context, bm gopay.Bod
 // datadigital.fincloud.generalsaas.face.verification.initialize(人脸核身初始化)
 // 文档地址：https://opendocs.alipay.com/open/04jg6r
 func (a *Client) FaceVerificationInitialize(ctx context.Context, bm gopay.BodyMap) (aliRsp *FaceVerificationInitializeResponse, rawResponse string, err error) {
-	err = bm.CheckEmptyError("outer_order_no", "biz_code", "identity_type", "cert_type",
+	err = bm.CheckEmptyError(
+		"outer_order_no", "biz_code",
+		"identity_type", "cert_type",
 		"cert_name", "cert_no",
 	)
 	if err != nil {

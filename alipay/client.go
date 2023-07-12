@@ -3,8 +3,10 @@ package alipay
 import (
 	"context"
 	"crypto/rsa"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"github.com/wangxiaoan/gopay/pkg/aes"
 	"time"
 
 	"github.com/wangxiaoan/gopay/gopay"
@@ -28,7 +30,8 @@ type Client struct {
 	IsProd             bool
 	bodySize           int // http response body size(MB), default is 10MB
 	privateKey         *rsa.PrivateKey
-	aliPayPublicKey    *rsa.PublicKey // 支付宝证书公钥内容 alipayPublicCert.crt
+	aliPayPublicKey    *rsa.PublicKey //支付宝证书公钥内容 alipayPublicCert.crt
+	Aes                string         //aes密钥
 	autoSign           bool
 	DebugSwitch        gopay.DebugSwitch
 	location           *time.Location
@@ -223,9 +226,21 @@ func (a *Client) doAliPay(ctx context.Context, bm gopay.BodyMap, method string, 
 			if bodyBs, err = json.Marshal(bm); err != nil {
 				return nil, fmt.Errorf("json.Marshal：%w", err)
 			}
+
 			bizContent = string(bodyBs)
 			bm.Set("app_auth_token", aat)
 		}
+
+		//判断是否AES加密
+		if bm.GetString("encrypt_type") == EncryptTypeAes {
+			bizContent = base64.StdEncoding.EncodeToString([]byte(bizContent))
+			bytesBizContent, aesErr := aes.CBCEncrypt([]byte(bizContent), []byte(a.Aes), []byte{})
+			if aesErr != nil {
+				return nil, fmt.Errorf("aes CBCEncrypt.M：%w", err)
+			}
+			bizContent = string(bytesBizContent)
+		}
+
 	}
 	// 处理公共参数
 	param, err := a.pubParamsHandle(bm, method, bizContent, authToken...)
@@ -369,6 +384,11 @@ func (a *Client) pubParamsHandle(bm gopay.BodyMap, method, bizContent string, au
 		Set("sign_type", a.SignType).
 		Set("version", "1.0").
 		Set("timestamp", time.Now().Format(util.TimeLayout))
+
+	// 加密方式
+	if encryptType := bm.GetString("encrypt_type"); encryptType != util.NULL {
+		pubBody.Set("encrypt_type", encryptType)
+	}
 
 	// version
 	if version := bm.GetString("version"); version != util.NULL {

@@ -15,6 +15,7 @@ const (
 	RSA                       = "RSA"
 	RSA2                      = "RSA2"
 	UTF8                      = "utf-8"
+	EncryptTypeAes            = "AES"
 )
 
 var (
