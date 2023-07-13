@@ -598,5 +598,36 @@ func (a *Client) FaceVerificationInitialize(ctx context.Context, bm gopay.BodyMa
 	}
 	aliRsp.ResponseDecrypt = beanPtr
 
-	return aliRsp, string(bs), a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
+	return aliRsp, string(bs), nil
+}
+
+// datadigital.fincloud.generalsaas.face.verification.query(人脸核身结果查询)
+// 文档地址：https://opendocs.alipay.com/open/04jg6s?pathHash=1608a398
+func (a *Client) FaceVerificationQuery(ctx context.Context, bm gopay.BodyMap) (aliRsp *FaceVerificationInitializeResponse, rawResponse string, err error) {
+	err = bm.CheckEmptyError(
+		"certify_id",
+	)
+	if err != nil {
+		return nil, "", err
+	}
+	var bs []byte
+	if bs, err = a.doAliPay(ctx, bm, MethodFaceVerificationQuery); err != nil {
+		return nil, string(bs), err
+	}
+	aliRsp = new(FaceVerificationInitializeResponse)
+	if err = json.Unmarshal(bs, aliRsp); err != nil || aliRsp.Response == "" {
+		return nil, string(bs), err
+	}
+
+	//获取签名数据
+	signData, signDataErr := a.getSignData(bs, aliRsp.AlipayCertSn)
+	aliRsp.SignData = signData
+
+	//校验签名
+	signValidateErr := a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
+	if signValidateErr != nil {
+		return aliRsp, string(bs), signValidateErr
+	}
+
+	return aliRsp, string(bs), nil
 }

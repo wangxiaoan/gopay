@@ -9,7 +9,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"net/url"
 	"reflect"
 	"time"
 
@@ -21,13 +20,13 @@ import (
 	"github.com/wangxiaoan/gopay/pkg/xrsa"
 )
 
-// 格式化请求URL参数
-func FormatURLParam(body gopay.BodyMap) (urlParam string) {
-	v := url.Values{}
-	for key, value := range body {
-		v.Add(key, value.(string))
+// 判断请求是否使用Aes 加密
+func IsEncryptQuest(bm gopay.BodyMap) bool {
+	if bm.GetString("encrypt_type") == EncryptTypeAes {
+		return true
 	}
-	return v.Encode()
+
+	return false
 }
 
 // DecryptOpenDataToStruct 解密支付宝开放数据到 结构体

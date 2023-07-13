@@ -343,3 +343,19 @@ type FaceVerificationInitialize struct {
 	CertifyId string `json:"certify_id,omitempty"`
 	PageUrl   string `json:"page_url,omitempty"`
 }
+
+// 人脸认证初始化接口返回结构
+type FaceVerificationQueryResponse struct {
+	Sign         string                 `json:"sign"`
+	AlipayCertSn string                 `json:"alipay_cert_sn,omitempty"`
+	Response     *FaceVerificationQuery `json:"datadigital_fincloud_generalsaas_face_verification_query_response"`
+	SignData     string                 `json:"-"`
+}
+type FaceVerificationQuery struct {
+	ErrorResponse
+	CertifyState string `json:"certify_state"`
+	Score        string `json:"score,omitempty"`
+	Quality      string `json:"quality,omitempty"`
+	AlivePhoto   string `json:"alive_photo,omitempty"`
+	AttackFlag   string `json:"attack_flag,omitempty"`
+}
