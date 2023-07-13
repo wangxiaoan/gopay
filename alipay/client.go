@@ -233,12 +233,11 @@ func (a *Client) doAliPay(ctx context.Context, bm gopay.BodyMap, method string, 
 
 		//判断是否AES加密
 		if bm.GetString("encrypt_type") == EncryptTypeAes {
-			bizContent = base64.StdEncoding.EncodeToString([]byte(bizContent))
-			bytesBizContent, aesErr := aes.CbcEncryptPKCS5([]byte(bizContent), []byte(a.Aes), []byte{})
+			encryptData, aesErr := aes.CbcEncryptPKCS5([]byte(bizContent), []byte(a.Aes), []byte{})
 			if aesErr != nil {
-				return nil, fmt.Errorf("aes CBCEncrypt.M：%w", aesErr)
+				return nil, fmt.Errorf("aes CBCEncrypt err=%v", aesErr)
 			}
-			bizContent = base64.StdEncoding.EncodeToString(bytesBizContent)
+			bizContent = base64.StdEncoding.EncodeToString(encryptData)
 		}
 
 	}

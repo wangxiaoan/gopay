@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	secretKey = "JYRn4wbCy8KgVIZJaPhYTcTn2zixVC4Y"
-	iv        = "JR3unO2glQuMhUx3"
+	secretKey = "Op+2eEJtmtC8rDwzLGjZIw=="
+	iv        = ""
 )
 
 func init() {
@@ -73,4 +73,22 @@ func TestEncryptGCM(t *testing.T) {
 		return
 	}
 	xlog.Debug("解密后：", string(decryptBytes))
+}
+
+func TestAesCBCEncryptPKCS5(t *testing.T) {
+	originData := "123456"
+	xlog.Debug("originData:", originData)
+	secretKeyByte, _ := base64.StdEncoding.DecodeString(secretKey)
+	encryptData, err := CbcEncryptPKCS5([]byte(originData), secretKeyByte, []byte(iv))
+	if err != nil {
+		xlog.Error("CBCEncrypt:", err)
+		return
+	}
+	xlog.Debug("encryptData:", base64.StdEncoding.EncodeToString(encryptData))
+	origin, err := CBCDecrypt(encryptData, []byte(secretKey), []byte(iv))
+	if err != nil {
+		xlog.Error("CBCDecrypt:", err)
+		return
+	}
+	xlog.Debug("origin:", string(origin))
 }
