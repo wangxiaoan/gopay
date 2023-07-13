@@ -238,7 +238,7 @@ func (a *Client) doAliPay(ctx context.Context, bm gopay.BodyMap, method string, 
 			if aesErr != nil {
 				return nil, fmt.Errorf("aes CBCEncrypt.M：%w", aesErr)
 			}
-			bizContent = string(bytesBizContent)
+			bizContent = base64.StdEncoding.EncodeToString(bytesBizContent)
 		}
 
 	}
