@@ -576,13 +576,27 @@ func (a *Client) FaceVerificationInitialize(ctx context.Context, bm gopay.BodyMa
 		return nil, string(bs), err
 	}
 	aliRsp = new(FaceVerificationInitializeResponse)
-	if err = json.Unmarshal(bs, aliRsp); err != nil || aliRsp.Response == nil {
+	if err = json.Unmarshal(bs, aliRsp); err != nil || aliRsp.Response == "" {
 		return nil, string(bs), err
 	}
-	if err = bizErrCheck(aliRsp.Response.ErrorResponse); err != nil {
-		return aliRsp, string(bs), err
-	}
+
+	//获取签名数据
 	signData, signDataErr := a.getSignData(bs, aliRsp.AlipayCertSn)
 	aliRsp.SignData = signData
+
+	//校验签名
+	signValidateErr := a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
+	if signValidateErr != nil {
+		return aliRsp, string(bs), signValidateErr
+	}
+
+	//解密返回结果
+	beanPtr := new(FaceVerificationInitialize)
+	decodeErr := DecryptOpenDataToStruct(aliRsp.Response, a.Aes, beanPtr)
+	if decodeErr != nil {
+		return aliRsp, string(bs), decodeErr
+	}
+	aliRsp.ResponseDecrypt = beanPtr
+
 	return aliRsp, string(bs), a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
 }

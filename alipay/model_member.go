@@ -332,10 +332,11 @@ type UserAlipaypointBudgetlibQuery struct {
 // ==================================================================
 // 人脸认证初始化接口返回结构
 type FaceVerificationInitializeResponse struct {
-	Response     *FaceVerificationInitialize `json:"datadigital_fincloud_generalsaas_face_verification_initialize_response"`
-	AlipayCertSn string                      `json:"alipay_cert_sn,omitempty"`
-	SignData     string                      `json:"-"`
-	Sign         string                      `json:"sign"`
+	Response        string                      `json:"datadigital_fincloud_generalsaas_face_verification_initialize_response"` //加密数据
+	Sign            string                      `json:"sign"`
+	AlipayCertSn    string                      `json:"alipay_cert_sn,omitempty"`
+	ResponseDecrypt *FaceVerificationInitialize `json:"json:"-"` //加密数据解密结果
+	SignData        string                      `json:"-"`
 }
 type FaceVerificationInitialize struct {
 	ErrorResponse

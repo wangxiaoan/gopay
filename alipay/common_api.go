@@ -36,8 +36,8 @@ func FormatURLParam(body gopay.BodyMap) (urlParam string) {
 // beanPtr:需要解析到的结构体指针
 // 文档：https://opendocs.alipay.com/mini/introduce/aes
 // 文档：https://opendocs.alipay.com/open/common/104567
-func DecryptOpenDataToStruct(encryptedData, secretKey string, beanPtr interface{}) (err error) {
-	if encryptedData == util.NULL || secretKey == util.NULL {
+func DecryptOpenDataToStruct(encryptedData string, aesKey []byte, beanPtr interface{}) (err error) {
+	if encryptedData == util.NULL || aesKey == nil {
 		return errors.New("encryptedData or secretKey is null")
 	}
 	beanValue := reflect.ValueOf(beanPtr)
@@ -52,7 +52,6 @@ func DecryptOpenDataToStruct(encryptedData, secretKey string, beanPtr interface{
 		blockMode  cipher.BlockMode
 		originData []byte
 	)
-	aesKey, _ := base64.StdEncoding.DecodeString(secretKey)
 	ivKey := []byte{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	secretData, _ := base64.StdEncoding.DecodeString(encryptedData)
 	if block, err = aes.NewCipher(aesKey); err != nil {
