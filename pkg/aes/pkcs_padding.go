@@ -11,6 +11,22 @@ func PKCS5Padding(ciphertext []byte, blockSize int) []byte {
 	return append(ciphertext, padtext...)
 }
 
+/*
+解包装
+*/
+func PKCS5Trimming(encrypt []byte) []byte {
+	padding := encrypt[len(encrypt)-1]
+	return encrypt[:len(encrypt)-int(padding)]
+
+}
+
+/*
+func PKCS5Padding(cipherText []byte, blockSize int) []byte {
+	padding := blockSize - len(cipherText)%blockSize
+	padText := bytes.Repeat([]byte{byte(padding)}, padding)
+	return append(cipherText, padText...)
+}*/
+
 // 解密填充模式（去除补全码） PKCS5UnPadding
 // 解密时，需要在最后面去掉加密时添加的填充byte
 func PKCS5UnPadding(origData []byte) []byte {

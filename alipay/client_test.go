@@ -2,6 +2,8 @@ package alipay
 
 import (
 	"context"
+	"encoding/base64"
+	"github.com/wangxiaoan/gopay/pkg/aes"
 	"os"
 	"testing"
 
@@ -94,7 +96,7 @@ func TestDecryptOpenDataToBodyMap(t *testing.T) {
 	xlog.Info("bm:", bm)
 }
 
-func TestAesEncrypt(t *testing.T) {
+func TestAesDecrypt(t *testing.T) {
 	data := "MkvuiIZsGOC8S038cu/JIpoRKnF+ZFjoIRGf5d/K4+ctYjCtb/eEkwgrdB5TeH/93bxff1Ylb+SE+UGStlpvcg=="
 	key := "TDftre9FpItr46e9BVNJcw=="
 	bm, err := DecryptOpenDataToBodyMap(data, key)
@@ -103,4 +105,17 @@ func TestAesEncrypt(t *testing.T) {
 		return
 	}
 	xlog.Info("bm:", bm)
+}
+
+func TestAesCBCEncrypt(t *testing.T) {
+	data := "12344"
+	key := "TDftre9FpItr46e9BVNJcw=="
+
+	bizContent := base64.StdEncoding.EncodeToString([]byte(data))
+	bytesBizContent, aesErr := aes.CbcEncryptPKCS5([]byte(bizContent), []byte(key), []byte{})
+	if aesErr != nil {
+		t.Logf("aes CBCEncrypt.M：%v", aesErr)
+	}
+	t.Logf("aes CBCEncrypt.M：%v", bytesBizContent)
+
 }

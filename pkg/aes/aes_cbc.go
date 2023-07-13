@@ -21,6 +21,10 @@ func cbcEncrypt(originData, key, iv []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	if len(iv) == 0 {
+		iv = make([]byte, block.BlockSize())
+	}
+
 	originData = PKCS7Padding(originData, block.BlockSize())
 	secretData := make([]byte, len(originData))
 	blockMode := cipher.NewCBCEncrypter(block, iv[:block.BlockSize()])
@@ -40,4 +44,20 @@ func cbcDecrypt(secretData, key, iv []byte) (originByte []byte, err error) {
 		return nil, errors.New("blockMode.CryptBlocks error")
 	}
 	return PKCS7UnPadding(originByte), nil
+}
+
+func CbcEncryptPKCS5(originData, key, iv []byte) ([]byte, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return nil, err
+	}
+	if len(iv) == 0 {
+		iv = make([]byte, block.BlockSize())
+	}
+
+	originData = PKCS5Padding(originData, block.BlockSize())
+	secretData := make([]byte, len(originData))
+	blockMode := cipher.NewCBCEncrypter(block, iv[:block.BlockSize()])
+	blockMode.CryptBlocks(secretData, originData)
+	return secretData, nil
 }
