@@ -603,7 +603,7 @@ func (a *Client) FaceVerificationInitialize(ctx context.Context, bm gopay.BodyMa
 
 // datadigital.fincloud.generalsaas.face.verification.query(人脸核身结果查询)
 // 文档地址：https://opendocs.alipay.com/open/04jg6s?pathHash=1608a398
-func (a *Client) FaceVerificationQuery(ctx context.Context, bm gopay.BodyMap) (aliRsp *FaceVerificationInitializeResponse, rawResponse string, err error) {
+func (a *Client) FaceVerificationQuery(ctx context.Context, bm gopay.BodyMap) (aliRsp *FaceVerificationQueryResponse, rawResponse string, err error) {
 	err = bm.CheckEmptyError(
 		"certify_id",
 	)
@@ -614,8 +614,8 @@ func (a *Client) FaceVerificationQuery(ctx context.Context, bm gopay.BodyMap) (a
 	if bs, err = a.doAliPay(ctx, bm, MethodFaceVerificationQuery); err != nil {
 		return nil, string(bs), err
 	}
-	aliRsp = new(FaceVerificationInitializeResponse)
-	if err = json.Unmarshal(bs, aliRsp); err != nil || aliRsp.Response == "" {
+	aliRsp = new(FaceVerificationQueryResponse)
+	if err = json.Unmarshal(bs, aliRsp); err != nil {
 		return nil, string(bs), err
 	}
 

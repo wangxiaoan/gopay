@@ -1,6 +1,8 @@
 package alipay
 
 import (
+	"encoding/base64"
+	"encoding/json"
 	"github.com/wangxiaoan/gopay/pkg/util"
 	"testing"
 
@@ -418,4 +420,33 @@ func TestClient_FaceVerificationInitialize(t *testing.T) {
 		return
 	}
 	t.Logf("response=%v", aliRsp)
+}
+
+// 测试人脸初始化 返回结果解密
+func TestClient_FaceVerificationInitializeDecrypt(t *testing.T) {
+	// 请求参数
+	responseStr := `{"datadigital_fincloud_generalsaas_face_verification_initialize_response":"QXGYmFkjHmDYWrZeCl01UV7n+KFROs1u5luoFePffoTg5vchKT82PIVVeiT7JO2SB0cmzhM47vp0o3pEOsU4O0+eWfKGLFYeNE3DiAnoVaUPUsg6hWMEL9s88cZ3sDGcYiMetHkV4GHkCIhjzjA24A==","sign":"PRk9AHOevuQDewY6ybRLWVdg4GTte+0V+GZ5kaNLDszDB0rH3SpVz+mUK01R1re81tH2jLGzRf86zgpMcBnx5VtfRT2HKEUnFO7r98SuUfH42LhAUNG/X9ET3Q8kaXv2BPTZAV4iDXy+IwRk2FOgtIaUaql8j7/ys0/3/Uv5WJoxOOl2fsRuiajDEcb/A4HcaWukMMITP5etdabk71zHmBwYGLAYda+OKULfLM5oU6Hj+1WaggAgJE+TnXsYNj1y45GKAvKolcaA8YcwHp5i/AHD5RH3kJpqSOPKUDlL5QeKSQGiF2BrDY4UH/Pc8fZb/sfpXgyf57kr1tQd+vxrZQ=="}`
+
+	aliRsp := new(FaceVerificationInitializeResponse)
+	if err = json.Unmarshal([]byte(responseStr), aliRsp); err != nil || aliRsp.Response == "" {
+		t.Fatalf(" json.Unmarshal err=%v", err)
+	}
+	//解密返回结果
+	beanPtr := new(FaceVerificationInitialize)
+	Aes, _ := base64.StdEncoding.DecodeString("Op+2eEJtmtC8rDwzLGjZIw==")
+	decodeErr := DecryptOpenDataToStruct(aliRsp.Response, Aes, beanPtr)
+	if decodeErr != nil {
+		t.Fatalf(" json.Unmarshal err=%v", err)
+	}
+	aliRsp.ResponseDecrypt = beanPtr
+
+	t.Logf("err=%v", err)
+	if err != nil {
+		if bizErr, ok := IsBizError(err); ok {
+			xlog.Errorf("%+v", bizErr)
+			return
+		}
+		return
+	}
+	t.Logf("response=%#v", aliRsp.ResponseDecrypt)
 }
