@@ -3,9 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/wangxiaoan/gopay/common"
-
 	"github.com/wangxiaoan/gopay/alipay"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -23,7 +22,7 @@ func main() {
 	client.SetCertSnByPath("./appPublicCert.crt", "./alipayRootCert.crt", "./alipayPublicCert.crt")
 
 	//请求参数
-	bm := common.BodyMap{}
+	bm := gopay.BodyMap{}
 	bm.Set("out_order_no", "202104021339585117785701")
 	bm.Set("out_request_no", "20210402133958511778570101")
 	bm.Set("remark", "测试取消")

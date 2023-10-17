@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -24,10 +25,10 @@ func TradeClose() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("out_trade_no", "GYWX201901301040355706100459")
 	//条码支付
-	aliRsp, err := client.TradeClose(ctx, bm)
+	aliRsp, err := client.TradeClose(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

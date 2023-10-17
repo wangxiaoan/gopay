@@ -3,15 +3,13 @@ package gopay
 import (
 	"encoding/json"
 	"encoding/xml"
-	"github.com/wangxiaoan/gopay/common"
-	"testing"
-
 	"github.com/wangxiaoan/gopay/pkg/util"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
+	"testing"
 )
 
 func TestBodyMapSetBodyMap(t *testing.T) {
-	bm := make(common.BodyMap)
+	bm := make(BodyMap)
 	// 1、配合map使用
 	sceneInfo := make(map[string]map[string]string)
 	h5Info := make(map[string]string)
@@ -44,8 +42,8 @@ func TestBodyMapSetBodyMap(t *testing.T) {
 	xlog.Debug(bm) // []
 
 	// 4、高级用法
-	bm.SetBodyMap("scene_info", func(bm common.BodyMap) {
-		bm.SetBodyMap("h5_info", func(bm common.BodyMap) {
+	bm.SetBodyMap("scene_info", func(bm BodyMap) {
+		bm.SetBodyMap("h5_info", func(bm BodyMap) {
 			bm.Set("type", "Wap").
 				Set("wap_url", "https://www.fmm.ink").
 				Set("wap_name", "H5测试支付")
@@ -57,7 +55,7 @@ func TestBodyMapSetBodyMap(t *testing.T) {
 }
 
 func TestBodyMapMarshal(t *testing.T) {
-	bm := make(common.BodyMap)
+	bm := make(BodyMap)
 	bm.Set("4key", "4value").
 		Set("6key", "6value").
 		Set("5key", "5value")
@@ -66,8 +64,8 @@ func TestBodyMapMarshal(t *testing.T) {
 
 	bm.Reset()
 
-	bm.SetBodyMap("scene_info", func(bm common.BodyMap) {
-		bm.SetBodyMap("h5_info", func(bm common.BodyMap) {
+	bm.SetBodyMap("scene_info", func(bm BodyMap) {
+		bm.SetBodyMap("h5_info", func(bm BodyMap) {
 			bm.Set("type", "Wap").
 				Set("wap_url", "https://www.fmm.ink").
 				Set("wap_name", "H5测试支付")
@@ -79,11 +77,11 @@ func TestBodyMapMarshal(t *testing.T) {
 
 	bm.Reset()
 
-	bm.SetBodyMap("partner", func(bm common.BodyMap) {
+	bm.SetBodyMap("partner", func(bm BodyMap) {
 		bm.Set("type", "APPID").
 			Set("appid", "wx123456").
 			Set("merchant_id", "88888")
-	}).SetBodyMap("authorized_data", func(bm common.BodyMap) {
+	}).SetBodyMap("authorized_data", func(bm BodyMap) {
 		bm.Set("business_type", "BUSIFAVOR_STOCK").
 			Set("stock_id", "66666")
 	}).Set("limit", 5).
@@ -117,7 +115,7 @@ func TestBodyMapMarshalSlice(t *testing.T) {
 	rs = append(rs, item2)
 	bs, _ := json.Marshal(rs)
 
-	bm := make(common.BodyMap)
+	bm := make(BodyMap)
 	bm.Set("nonce_str", util.RandomString(32)).
 		Set("transaction_id", "4208450740201411110007820472").
 		Set("out_order_no", "P20150806125346")
@@ -139,7 +137,7 @@ func TestSliceTest(t *testing.T) {
 	rs = append(rs, "SECURITY")
 	rs = append(rs, "LOVE_MARRIAGE")
 
-	bm := make(common.BodyMap)
+	bm := make(BodyMap)
 	bm.Set("sub_mchid", "2021060717").
 		Set("advertising_industry_filters", rs)
 

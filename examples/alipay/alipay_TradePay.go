@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -25,7 +26,7 @@ func TradePay() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("subject", "条码支付")
 	bm.Set("scene", "bar_code")
 	bm.Set("auth_code", "286248566432274952")
@@ -33,7 +34,7 @@ func TradePay() {
 	bm.Set("total_amount", "0.01")
 	bm.Set("timeout_express", "2m")
 	//条码支付
-	aliRsp, err := client.TradePay(ctx, bm)
+	aliRsp, err := client.TradePay(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

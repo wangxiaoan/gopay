@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -25,13 +26,13 @@ func TradeCreate() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("subject", "创建订单").
 		Set("buyer_id", "2088802095984694").
 		Set("out_trade_no", "GZ201901301040355709").
 		Set("total_amount", "0.01")
 	//创建订单
-	aliRsp, err := client.TradeCreate(ctx, bm)
+	aliRsp, err := client.TradeCreate(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

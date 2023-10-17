@@ -54,11 +54,11 @@ func (a *Client) FundAccountQuery(ctx context.Context, bm gopay.BodyMap) (aliRsp
 	return aliRsp, a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
 }
 
-// alipay.fund.trans.common.query(转账业务单据查询接口)
+// alipay.fund.trans.gopay.query(转账业务单据查询接口)
 // 文档地址：https://opendocs.alipay.com/open/02byup
 func (a *Client) FundTransCommonQuery(ctx context.Context, bm gopay.BodyMap) (aliRsp *FundTransCommonQueryResponse, err error) {
 	var bs []byte
-	if bs, err = a.doAliPay(ctx, bm, "alipay.fund.trans.common.query"); err != nil {
+	if bs, err = a.doAliPay(ctx, bm, "alipay.fund.trans.gopay.query"); err != nil {
 		return nil, err
 	}
 	aliRsp = new(FundTransCommonQueryResponse)

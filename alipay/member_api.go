@@ -288,15 +288,15 @@ func (a *Client) UserAgreementTransfer(ctx context.Context, bm gopay.BodyMap) (a
 	return aliRsp, a.autoVerifySignByCert(aliRsp.Sign, signData, signDataErr)
 }
 
-// alipay.user.twostage.common.use(通用当面付二阶段接口)
-// 文档地址：https://opendocs.alipay.com/apis/api_2/alipay.user.twostage.common.use
+// alipay.user.twostage.gopay.use(通用当面付二阶段接口)
+// 文档地址：https://opendocs.alipay.com/apis/api_2/alipay.user.twostage.gopay.use
 func (a *Client) UserTwostageCommonUse(ctx context.Context, bm gopay.BodyMap) (aliRsp *UserTwostageCommonUseRsp, err error) {
 	err = bm.CheckEmptyError("dynamic_id", "sence_no", "pay_pid")
 	if err != nil {
 		return nil, err
 	}
 	var bs []byte
-	if bs, err = a.doAliPay(ctx, bm, "alipay.user.twostage.common.use"); err != nil {
+	if bs, err = a.doAliPay(ctx, bm, "alipay.user.twostage.gopay.use"); err != nil {
 		return nil, err
 	}
 	aliRsp = new(UserTwostageCommonUseRsp)

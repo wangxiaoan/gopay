@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -23,12 +24,12 @@ func TradeRefund() {
 		SetSignType(alipay.RSA2)
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("out_trade_no", "GZ201907301420334577")
 	bm.Set("refund_amount", "5")
 	bm.Set("refund_reason", "测试退款")
 	//发起退款请求
-	aliRsp, err := client.TradeRefund(ctx, bm)
+	aliRsp, err := client.TradeRefund(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

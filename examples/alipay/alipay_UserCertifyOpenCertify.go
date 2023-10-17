@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -23,12 +24,12 @@ func UserCertifyOpenCertify() {
 		SetSignType(alipay.RSA2)
 
 	// 请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	// 本次申请操作的唯一标识，由开放认证初始化接口调用后生成，后续的操作都需要用到
 	bm.Set("certify_id", "OC201809253000000393900404029253")
 
 	//发起请求
-	certifyUrl, err := client.UserCertifyOpenCertify(ctx, bm)
+	certifyUrl, err := client.UserCertifyOpenCertify(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

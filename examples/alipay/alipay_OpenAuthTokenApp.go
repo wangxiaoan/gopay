@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -23,11 +24,11 @@ func OpenAuthTokenApp() {
 		SetSignType(alipay.RSA2)
 
 	//请求参数
-	bm := make(common.BodyMap).
+	bm := make(gopay.BodyMap).
 		Set("grant_type", "authorization_code").
 		Set("code", "866185490c4e40efa9f71efea6766X02")
 	//发起请求
-	aliRsp, err := client.OpenAuthTokenApp(ctx, bm)
+	aliRsp, err := client.OpenAuthTokenApp(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

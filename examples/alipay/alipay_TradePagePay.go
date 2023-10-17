@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -24,14 +25,14 @@ func TradePagePay() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("subject", "网站测试支付")
 	bm.Set("out_trade_no", "GZ201901301040355706100469")
 	bm.Set("total_amount", "88.88")
 	bm.Set("product_code", "FAST_INSTANT_TRADE_PAY")
 
 	//电脑网站支付请求
-	payUrl, err := client.TradePagePay(ctx, bm)
+	payUrl, err := client.TradePagePay(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

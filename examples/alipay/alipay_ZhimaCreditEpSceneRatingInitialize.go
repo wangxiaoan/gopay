@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -22,13 +23,13 @@ func ZhimaCreditEpSceneRatingInitialize() {
 		SetSignType(alipay.RSA2)
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("credit_category", "ZMSCCO_5_1_1")
 	bm.Set("product_code", "w1010100100000000001")
 	bm.Set("out_order_no", "201805301527674106562F0000954216")
 	bm.Set("user_id", "2088302248028263")
 
-	aliRsp, err := client.ZhimaCreditEpSceneRatingInitialize(ctx, bm)
+	aliRsp, err := client.ZhimaCreditEpSceneRatingInitialize(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

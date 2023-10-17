@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -23,7 +24,7 @@ func UserCertifyOpenInit() {
 		SetSignType(alipay.RSA2)
 
 	// 请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("outer_order_no", "ZGYD201809132323000001234")
 	// 认证场景码：FACE：多因子人脸认证，CERT_PHOTO：多因子证照认证，CERT_PHOTO_FACE ：多因子证照和人脸认证，SMART_FACE：多因子快捷认证
 	bm.Set("biz_code", "FACE")
@@ -40,7 +41,7 @@ func UserCertifyOpenInit() {
 	bm.Set("merchant_config", merchant)
 
 	//发起请求
-	aliRsp, err := client.UserCertifyOpenInit(ctx, bm)
+	aliRsp, err := client.UserCertifyOpenInit(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

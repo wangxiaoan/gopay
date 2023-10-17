@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -22,7 +23,7 @@ func TradeOrderSettle() {
 		SetSignType(alipay.RSA2)
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("out_request_no", "201907301518083384")
 	bm.Set("trade_no", "2019072522001484690549776067")
 
@@ -41,7 +42,7 @@ func TradeOrderSettle() {
 	xlog.Debug("listParams:", bm.GetString("royalty_parameters"))
 
 	//发起交易结算接口
-	aliRsp, err := client.TradeOrderSettle(ctx, bm)
+	aliRsp, err := client.TradeOrderSettle(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

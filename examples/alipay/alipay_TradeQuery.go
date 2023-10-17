@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -24,11 +25,11 @@ func TradeQuery() {
 		SetAppAuthToken("201908BB03f542de8ecc42b985900f5080407abc")
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("out_trade_no", "GZ201909081743431443")
 
 	//查询订单
-	aliRsp, err := client.TradeQuery(ctx, bm)
+	aliRsp, err := client.TradeQuery(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

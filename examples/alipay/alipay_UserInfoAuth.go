@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -23,13 +24,13 @@ func UserInfoAuth() {
 		SetSignType(alipay.RSA2)
 
 	// 请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	// 接口权限值，目前只支持auth_user和auth_base两个值。具体说明看文档介绍
 	bm.Set("scopes", []string{"auth_user"})
 	bm.Set("state", "init")
 
 	// 发起请求
-	aliRsp, err := client.UserInfoAuth(ctx, bm)
+	aliRsp, err := client.UserInfoAuth(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return

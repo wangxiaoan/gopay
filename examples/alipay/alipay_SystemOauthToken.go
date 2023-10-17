@@ -1,8 +1,9 @@
 package alipay
 
 import (
+	"context"
 	"github.com/wangxiaoan/gopay/alipay"
-	"github.com/wangxiaoan/gopay/common"
+	"github.com/wangxiaoan/gopay/gopay"
 	"github.com/wangxiaoan/gopay/pkg/xlog"
 )
 
@@ -23,12 +24,12 @@ func SystemOauthToken() {
 		SetNotifyUrl("https://www.fmm.ink")
 
 	//请求参数
-	bm := make(common.BodyMap)
+	bm := make(gopay.BodyMap)
 	bm.Set("grant_type", "authorization_code")
 	bm.Set("code", "3a06216ac8f84b8c93507bb9774bWX11")
 
 	//发起请求
-	aliRsp, err := client.SystemOauthToken(ctx, bm)
+	aliRsp, err := client.SystemOauthToken(context.Background(), bm)
 	if err != nil {
 		xlog.Error("err:", err)
 		return
@@ -38,13 +39,13 @@ func SystemOauthToken() {
 	xlog.Debug("aliRsp:", aliRsp.SignData)
 
 	//支付宝小程序创建订单
-	bm2 := make(common.BodyMap)
+	bm2 := make(gopay.BodyMap)
 	bm2.Set("subject", "创建订单")
 	bm2.Set("buyer_id", aliRsp.Response.UserId)
 	bm2.Set("out_trade_no", "GZ201901301040355708")
 	bm2.Set("total_amount", "0.01")
 
-	rsp, err := client.TradeCreate(ctx, bm2)
+	rsp, err := client.TradeCreate(context.Background(), bm2)
 	if err != nil {
 		xlog.Error("err:", err)
 		return
